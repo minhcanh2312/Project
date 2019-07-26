@@ -1,0 +1,115 @@
+@charset "utf-8";
+/* button submit*/
+.submit01{
+  width:340px;
+  height:70px;
+  border:0;
+  background:#be1e2d;
+  font-family:"Yu Mincho";
+  font-weight:bold;
+  color:#fff;
+  font-size:133.33%;
+  position:relative;
+}
+.submit1{
+  text-align:center;
+  cursor: pointer;
+}
+.submit1 a:before{
+  content:"";
+  background:url(../../common/images/arr_button.png)right no-repeat;
+  float:left;
+  width:8px;
+  height:14px;
+  position:absolute;
+  top:0;
+  right:30px;
+  width:340px;
+  z-index:9;
+}
+.submit1 a{
+  position:relative;
+}
+/* scroll menu */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 77;
+  background:url(../../common/images/bg_sticky.png)left no-repeat;
+  height:126px!important;
+}
+.sticky .menu .booking{
+  display:block;
+}
+/* slide */
+.slider {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+.slick-prev:before,
+.slick-next:before {
+color: black;
+}
+.slick-slide {
+transition: all ease-in-out .3s;
+opacity: .2;
+}
+.slick-active {
+opacity: .5;
+}
+.slick-current {
+opacity: 1;
+}
+.slick-prev:before{
+content:"";
+background:url(../../common/images/arr_left.png)no-repeat;
+width:19px;
+height:34px;
+float:left;
+}
+.slick-next:before{
+  content:"";
+  background:url(../../common/images/arr_right.png)no-repeat;
+  width:19px;
+  height:34px;
+  float:right;
+  }
+.slick-prev{
+left:120px;
+}
+.slick-prev, .slick-next{
+  z-index: 66;
+}
+.slick-next{
+  right:120px;
+}
+.slick-dotted.slick-slider{
+  margin-bottom: 0;
+}
+.slick-dots li button{
+  background:#fff;
+  color:#fff;
+  width:10px;
+  height:10px;
+  border-radius:100%;
+}
+.slick-dots{
+  bottom:40px;
+}
+.slick-dots li{
+  width:10px;
+  height:10px;
+  margin:0 8px;
+}
+.slick-active{
+  opacity:1;
+}
+.slick-dots .slick-active button{
+  width:16px;
+  height:16px;
+}
+.slick-dots li button:before{
+  content:"";
+}
