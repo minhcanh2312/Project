@@ -17,9 +17,9 @@ class Comments extends Component {
 
     render() {
         let {comments} = this.props
-        console.log(this.props)
+
         return (
-            <div className="commnent" >
+            <div className="commnent" style={{fontSize: "17px", margin: "20px"}} >
                 {comments[this.props.post_id] ? comments[this.props.post_id].map((comment, i) => <p key={i}>{comment}</p>) : null}
                 <form className="comment-form" onSubmit={this.handleSubmit}>
                     <input type="text" placeholder="comment" name="comment"/>
