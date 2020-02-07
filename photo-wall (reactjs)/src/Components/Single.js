@@ -4,7 +4,6 @@ import Comments from './Comments'
 
 class Single extends Component {
     render() {        
-        console.log(this.props)
         const {match, posts, comments} = this.props
         const id = Number(match.params.id)
         const post = posts.find(post => post.id === id)

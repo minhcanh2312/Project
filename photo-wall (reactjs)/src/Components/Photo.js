@@ -4,9 +4,8 @@ import {Link} from 'react-router-dom'
 
 function Photo(props) {
     const {post, comments} = props
-    console.log(props)
     let count_comments = comments[post.id] ? comments[post.id].length : 0
-    console.log(count_comments)
+
     return (
         <figure className="figure">
             <Link to={`/single/${post.id}`} style={{display: "block"}}>

@@ -7,7 +7,6 @@ import Single from './Single'
 
 class Main extends Component {
     render() {
-        console.log(this.props)
         return (
             <div>
                 <Title />
@@ -16,14 +15,6 @@ class Main extends Component {
                         <PhotoWall {...this.props} {...params} />
                     </div>
                     )} />
-                {/* <Route path="/AddPhoto" 
-                    render={history => <AddPhoto onAddPhoto={(newPost) => {
-                        console.log(history)
-                        this.addPhoto(newPost)
-                        history.history.push('/')
-                    }} posts={this.state.posts}
-                    />}
-                /> */}
                 <Route path="/AddPhoto"
                     // render={history => <AddPhoto {...this.props} history={history} />}
                     render={() => <AddPhoto {...this.props} />}
