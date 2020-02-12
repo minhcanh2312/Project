@@ -8,7 +8,11 @@ class QuantityChange extends React.Component {
             <React.Fragment>
                 <div className="cart-item_quantity">
                     <button onClick={() => this.props.decreasement(this.props.product, this.props.location)}>-</button>
-                    <input type="number" value={this.props.product.quantity} onChange={(e) => this.props.changeQuantity(this.props.product.id, Number(e.target.value), this.props.location)} />
+                    <input 
+                        type="text" pattern="[0-9]*" maxLength={4}
+                        value={this.props.product.quantity} 
+                        onChange={e => e.target.validity.valid && e.target.value !== '' && e.target.value !== '0' ? this.props.changeQuantity(this.props.product.id, Number(e.target.value), this.props.location) : null} 
+                    />
                     <button onClick={() => this.props.increasement(this.props.product, this.props.location)}>+</button>
                 </div>
             </React.Fragment>

@@ -92,7 +92,9 @@ function increasement(state, action) {
         let newShoppingCarts
         let productIndex = state.shoppingCarts.findIndex(item => item.id === product.id)
         newShoppingCarts = [...state.shoppingCarts]
-        newShoppingCarts[productIndex].quantity++
+        if(newShoppingCarts[productIndex].quantity > 0 && newShoppingCarts[productIndex].quantity < 9999) {
+            newShoppingCarts[productIndex].quantity++
+        }
         return { ...state, shoppingCarts: newShoppingCarts }
     } else {
         let newProductDetail = { ...state.productDetail }
@@ -134,6 +136,7 @@ function changeQuantity(state, action) {
             }
         }
     }
+
 }
 function setProductDetail(state, action) {
     let newProduct
