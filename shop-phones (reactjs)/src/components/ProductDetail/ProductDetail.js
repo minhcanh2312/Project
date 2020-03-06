@@ -6,6 +6,15 @@ import { starRating, addToCart } from '../../redux/actions'
 import QuantityChange from '../QuantityChange'
 
 class ProductDetail extends React.Component {
+
+    handleAddToCart = () => {
+        let productIndex = this.props.shoppingCarts.findIndex(product => product.id === this.props.productDetail.id)
+        if(productIndex === -1) {
+            this.props.addToCart(this.props.productDetail, this.props.productDetail.quantity)
+        }else {
+            alert('Your cart has already this product')
+        }
+    }
     render() {
         let arr = [1, 2, 3, 4, 5]
         let {productDetail, location} = this.props
@@ -41,7 +50,7 @@ class ProductDetail extends React.Component {
                         <div className="quantiy-and-addToCartBtn">
                             <QuantityChange product={this.props.productDetail} location={location} />
                         </div>
-                        <button className="single-addToCart-btn" onClick={(e)=>this.props.addToCart(productDetail, e, location)}>Add to cart</button>
+                        <button className="single-addToCart-btn" onClick={this.handleAddToCart}>Add to cart</button>
                     </div>
                 </div>
             </div>
@@ -52,7 +61,7 @@ class ProductDetail extends React.Component {
 const mapStateToProps = appState => {
     return {
         productDetail: appState.productDetail,
-        // shoppingCarts: appState.shoppingCarts
+        shoppingCarts: appState.shoppingCarts
     }
 }
 
@@ -62,7 +71,7 @@ const mapDispatchToProps = dispatch => {
         // increasement: product => dispatch(increasement(product)),
         // decreasement: product => dispatch(decreasement(product)),
         // changeQuantity: (id, newQuantity, location) => dispatch(changeQuantity(id, newQuantity, location)),
-        addToCart: (product, e, location) => dispatch(addToCart(product, e, location))
+        addToCart: (product, quantiy) => dispatch(addToCart(product, quantiy))
     }
 }
 

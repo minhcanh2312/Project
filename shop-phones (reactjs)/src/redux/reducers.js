@@ -15,7 +15,7 @@ import {
     STAR_RATING,
     GET_PRODUCTS
 } from './actions'
-import { res } from '../api'
+import { res } from '../mockData'
 
 const initialState = {
     products: [],
@@ -60,30 +60,17 @@ function navigate(state, action) {
 }
 
 function addToCart(state, action) {
-    let { product, event, location } = action.payload
+    let { product, quantity } = action.payload
     let newCartItem, newShoppingCarts
     let productIndex = state.shoppingCarts.findIndex(item => item.id === product.id)
-    if (location.pathname === '/') {
-        event.preventDefault()
-        if (productIndex === -1) {
-            newCartItem = { ...product, quantity: 1 }
-            newShoppingCarts = [...state.shoppingCarts, newCartItem]
-        } else {
-            newShoppingCarts = [...state.shoppingCarts]
-            newShoppingCarts[productIndex].quantity++
-        }
-        return { ...state, shoppingCarts: newShoppingCarts }
+    if (productIndex === -1) {
+        newCartItem = { ...product, quantity  }
+        newShoppingCarts = [...state.shoppingCarts, newCartItem]
     } else {
-        event.preventDefault()
-        if (productIndex === -1) {
-            newCartItem = { ...product }
-            newShoppingCarts = [...state.shoppingCarts, newCartItem]
-            return { ...state, shoppingCarts: newShoppingCarts }
-        } else {
-            alert('Your cart has this product already')
-            return { ...state }
-        }
+        newShoppingCarts = [...state.shoppingCarts]
+        newShoppingCarts[productIndex].quantity += quantity
     }
+    return { ...state, shoppingCarts: newShoppingCarts }
 }
 
 function increasement(state, action) {
@@ -92,27 +79,27 @@ function increasement(state, action) {
         let newShoppingCarts
         let productIndex = state.shoppingCarts.findIndex(item => item.id === product.id)
         newShoppingCarts = [...state.shoppingCarts]
-        if(newShoppingCarts[productIndex].quantity > 0 && newShoppingCarts[productIndex].quantity < 9999) {
+        if (newShoppingCarts[productIndex].quantity > 0 && newShoppingCarts[productIndex].quantity < 999) {
             newShoppingCarts[productIndex].quantity++
         }
         return { ...state, shoppingCarts: newShoppingCarts }
     } else {
         let newProductDetail = { ...state.productDetail }
-        newProductDetail.quantity++
+        if(newProductDetail.quantity < 999) newProductDetail.quantity++
         return { ...state, productDetail: newProductDetail }
     }
 }
 function decreasement(state, action) {
     let { product, location } = action.payload
     if (location.pathname === '/checkout') {
-        let newShoppingCarts
+        let newShoppingCarts = [...state.shoppingCarts]
         let productIndex = state.shoppingCarts.findIndex(item => item.id === product.id)
-        newShoppingCarts = [...state.shoppingCarts]
-        newShoppingCarts[productIndex].quantity--
+        if(product.quantity > 1) newShoppingCarts[productIndex].quantity--
         return { ...state, shoppingCarts: newShoppingCarts }
     } else {
         let newProductDetail = { ...state.productDetail }
-        newProductDetail.quantity--
+        if(product.quantity > 1) newProductDetail.quantity--
+        
         return { ...state, productDetail: newProductDetail }
     }
 }

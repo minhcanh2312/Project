@@ -29,10 +29,10 @@ export function navigate(page) {
     }
 }
 
-export function addToCart( product, event, location ) {
+export function addToCart( product, quantity ) {
     return {
         type: ADD_TO_CART,
-        payload: {product, event, location}
+        payload: {product, quantity }
     }
 }
 
@@ -43,9 +43,9 @@ export function increasement(product, location) {
     }
 }
 export function decreasement(product, location) {
-    if(product.quantity === 1) {
-        return removeCartItem(product.id)
-    }
+    // if(product.quantity === 1) {
+    //     return removeCartItem(product.id)
+    // }
     return {
         type: DECREASEMENT,
         payload: {product, location}
